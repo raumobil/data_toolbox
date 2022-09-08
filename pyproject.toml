@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "data_toolbox"
 version = "0.1.0"
-description = "Package containing core functions for data handling."
+description = "Package containing core functions for data ETL workloads."
 authors = ["Tanja Klopper <t.klopper@raumobil.com>", "Jan Wagner <j.wagner@raumobil.com>"]
+repository = "https://github.com/raumobil/data_toolbox"
 keywords = ["influxdb", "pandas"]
+license = "MIT"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
