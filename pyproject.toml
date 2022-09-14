@@ -9,7 +9,7 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 influxdb-client = "^1.28.0"
 pandas = "^1.4.0"
 
