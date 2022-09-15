@@ -1,12 +1,19 @@
 # data_toolbox
-data handler package
+Package containing core functions for data ETL workloads.
 
 # Installation
+Inside poetry project:
+`poetry add raumo_data_tools`
 
+With pip:
+pip install raumo_data_tools
 
-# Importbeispiele
-`from raumo_data_handler.data_handler import MatomoHandler`
+# Package contents
+### Config handler
+Reading configuration files for databases and servers
 
-`from raumo_data_handler.influx_writer import InfluxDbWriter`
+### influx writer
+Functions for writing to InfluxDB
 
-`from raumo_data_handler.config_handler import ConfigHandler`
+### pipelines
+Simple pipeline class
