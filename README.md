@@ -3,10 +3,10 @@ Package containing core functions for data ETL workloads.
 
 # Installation
 Inside poetry project:
-`poetry add raumo_data_tools`
+`poetry add raumo-data-tools`
 
 With pip:
-`pip install raumo_data_tools`
+`pip install raumo-data-tools`
 
 # Package contents
 ### Config handler
