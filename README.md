@@ -6,7 +6,7 @@ Inside poetry project:
 `poetry add raumo_data_tools`
 
 With pip:
-pip install raumo_data_tools
+`pip install raumo_data_tools`
 
 # Package contents
 ### Config handler
