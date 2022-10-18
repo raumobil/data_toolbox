@@ -68,20 +68,23 @@ class InfluxDbWriter:
             write_api.write(bucket, self.org, point)
 
     def write_df(
-        self, df, static_tags, bucket=None, measurement=None, tag_columns=None
+        self, df, static_tags=None, bucket=None, measurement=None, tag_columns=None
     ):
         """Write dataframe to InfluxDB
 
         Args:
             df (Pandas DataFrame with datetime index):
                 dataframe to write, columns will be written as fields
-            data_type (String): "data_type"-tag to use
-            source (String): "source"-tag to use
+            static_tags (Dict): dict with static tags
             bucket (String): bucket
             measurement (String): measurement
+            tag_columns (list): list of columns to use as tags
         """
         with InfluxDBClient(url=self.url, token=self.token, org=self.org) as client:
-            point_settings = PointSettings(**static_tags)
+            if static_tags:
+                point_settings = PointSettings(**static_tags)
+            else:
+                point_settings = None
 
             measurement = measurement if measurement else self.measurement
             bucket = bucket if bucket else self.bucket
