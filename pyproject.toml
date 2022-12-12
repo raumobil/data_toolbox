@@ -12,6 +12,7 @@ readme = "README.md"
 python = "^3.8"
 influxdb-client = "^1.28.0"
 pandas = "^1.4.0"
+sqlalchemy = "^1.4"
 
 [tool.poetry.dev-dependencies]
 
