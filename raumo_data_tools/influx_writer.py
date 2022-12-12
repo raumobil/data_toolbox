@@ -86,12 +86,13 @@ class InfluxDbWriter:
             else:
                 point_settings = None
 
-            measurement = measurement if measurement else self.measurement
-            bucket = bucket if bucket else self.bucket
-
             write_api = client.write_api(
                 write_options=SYNCHRONOUS, point_settings=point_settings
             )
+
+            measurement = measurement if measurement else self.measurement
+            bucket = bucket if bucket else self.bucket
+
             write_api.write(
                 bucket=bucket,
                 record=df,
