@@ -96,6 +96,21 @@ class GetInfluxData():
         df=df.drop(labels="_time",axis=1)
         return df
 
+    def query_fields_df_custom(self, reader, bucket, measurement, field, custom_filter):
+        flux_query = '''
+        from(bucket:"{}")
+            |> range(start: {}, stop: {} )
+            |> filter(fn: (r) => r["_measurement"] == "{}")
+            |> filter(fn: (r) => r["_field"] == "{}")
+            {}
+            |> drop(columns: ["_start", "_stop"])
+        '''.format(bucket, self.start, self.stop, measurement, field, custom_filter)
+
+        df = reader.query_data_frame(flux_query)
+        df.index=pd.to_datetime(df["_time"])
+        df=df.drop(labels="_time",axis=1)
+        return df
+
     def query_fields_tags_df(self, reader, bucket, measurement, field, tags):
         flux_query = '''
         from(bucket:"{}")
