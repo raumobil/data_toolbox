@@ -7,6 +7,39 @@ import json
 from datetime import date, timedelta
 import numpy as np
 
+class QueryInflux():
+    def __init__(self, config_name):
+        self.config = ConfigHandler(config_name)
+        self.client = InfluxDBClient(url=self.config.URL, token=self.config.TOKEN, org=self.config.ORG)
+
+    def _concat_list_result(self, result):
+        df = pd.DataFrame()
+
+        if type(result) is list:
+            for frame in result:
+                df = pd.concat([df, frame])
+        else:
+            df = result
+
+        return df
+
+    def _process_pivot_result(self, df):
+        df.index = df._time
+        df=df.drop(columns= ["result", "table", "_start", "_stop", "_measurement", "_time"])
+        df = df.pivot_table(index="_time", columns="_field")
+        df = df["_value"]
+        
+        return df
+
+    def run_query(self, query):
+        query_api = self.client.query_api()
+        result = query_api.query_data_frame(query=query)
+        df = self._concat_list_result(result)
+        df.fillna(0, inplace=True)
+
+        return df
+
+#%%
 class GetInfluxData():
     def __init__(self, start, stop, config_path):
         self.start = start
@@ -161,7 +194,7 @@ class GetInfluxData():
                 df = self._replace_zero(df)
 
         return df
-
+"""
 if __name__ == "__main__":
     TODAY = date.today()
     TODAY.strftime("%Y-%m-%d")
@@ -181,3 +214,6 @@ if __name__ == "__main__":
 
     df_init = ir.read_data("INIT", "Umsaetze", agg_interval="1d")
     print(df_init.head())
+"""
+
+# %%
