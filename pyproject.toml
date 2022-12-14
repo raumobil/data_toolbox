@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "raumo_data_tools"
-version = "0.1.2"
+version = "0.1.3"
 description = "Package containing core functions for data ETL workloads."
 authors = ["Tanja Klopper <t.klopper@raumobil.com>", "Jan Wagner <j.wagner@raumobil.com>"]
 repository = "https://github.com/raumobil/data_toolbox"
