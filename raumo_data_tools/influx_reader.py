@@ -28,6 +28,7 @@ class QueryInflux():
         df=df.drop(columns= ["result", "table", "_start", "_stop", "_measurement", "_time"])
         df = df.pivot_table(index="_time", columns="_field")
         df = df["_value"]
+        df.fillna(0, inplace=True)
         
         return df
 
